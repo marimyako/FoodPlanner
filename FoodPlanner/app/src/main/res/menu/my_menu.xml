@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navgation_view">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Home"
+        android:icon="@drawable/home"
+        />
+    <item
+        android:id="@+id/searchfragment"
+        android:title="Search"
+        android:icon="@drawable/search"
+        />
+    <item
+        android:id="@+id/favfragment"
+        android:title="Favourite"
+        android:icon="@drawable/favorite"
+       />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/account"
+        />
+</group>
+</menu>

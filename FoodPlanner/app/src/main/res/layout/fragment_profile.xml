@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile" >
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="531dp"
+        android:layout_height="129dp"
+        android:background="@drawable/headerarc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="188dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="96dp"
+        android:src="@drawable/userimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:layout_width="128dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Profile"
+        android:textColor="@color/text"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/circleImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:layout_width="38dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/arrowios"
+        android:backgroundTint="@color/icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="160dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="56dp"
+        android:text="name"
+        app:layout_constraintEnd_toEndOf="@+id/circleImageView"
+        app:layout_constraintStart_toStartOf="@+id/circleImageView"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+    <LinearLayout
+        android:layout_width="297dp"
+        android:layout_height="257dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.272"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Favourite List"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:drawableStart="@drawable/favorite"
+            android:elevation="10dp"
+            android:background="@drawable/main_button"
+            android:layout_marginBottom="60dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logoutbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/myprimary"
+            android:drawableStart="@drawable/logout"
+            android:elevation="10dp"
+            android:text="Logout" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

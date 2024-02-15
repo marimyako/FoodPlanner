@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/signup"
     android:background="@drawable/foodplannerbackgrounds"
-    tools:context=".Signup">
+    tools:context=".SignUp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,32 +25,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="28dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/welcomesignup"
                 android:textColor="@color/myprimary"
                 android:textSize="40sp"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="30dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:alpha="0.4"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:drawableEnd="@drawable/baseline_done_24"/>
 
 
             <View
@@ -59,11 +48,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EmailAddress"
                 android:alpha="0.4"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:text="@string/emailsignup"
+                android:textSize="20sp"
+                android:textStyle="bold" />
             <EditText
+                android:id="@+id/etemailsignup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
@@ -75,11 +65,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
                 android:alpha="0.4"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:text="@string/passwordsignup"
+                android:textSize="20sp"
+                android:textStyle="bold" />
             <EditText
+                android:id="@+id/etpasssignup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"/>
@@ -87,18 +78,6 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirm Password"
-                android:alpha="0.4"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -114,34 +93,32 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/signuppbtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Sign Up"
-                android:textSize="25sp"
+                android:background="@drawable/main_button"
+                android:elevation="400dp"
                 android:fontFamily="sans-serif-medium"
+                android:text="@string/signbtn"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Or Sign Up With"
-                android:layout_gravity="center"
-                android:alpha="0.7"
-                android:fontFamily="sans-serif-medium" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="12dp"
-                android:background="@drawable/google"
-                android:layout_gravity="center"/>
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"/>
@@ -154,12 +131,15 @@
                     android:layout_height="wrap_content"
                     android:text="Already Have an Account?"/>
                 <TextView
+                    android:id="@+id/loginnow"
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
                     android:text="Login"
                     android:textColor="@color/myprimary"
                     android:textStyle="bold"/>
-
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"/>
             </LinearLayout>
 
         </LinearLayout>
