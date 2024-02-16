@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.foodplanner.Model.CategoryResponse;
 import com.example.foodplanner.Model.CountryResponse;
+import com.example.foodplanner.Model.IngrdientResponse;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.MealResponse;
 import com.google.gson.Gson;
@@ -91,6 +92,36 @@ public class Connection implements RemoteDataSource {
     @Override
     public Observable<MealResponse> getMealsByName(String name) {
         Observable<MealResponse>observable=mealService.getMealsByName(name).subscribeOn(Schedulers.io());
+        return observable;
+    }
+
+    @Override
+    public Observable<IngrdientResponse> getAllIngrdient() {
+        Observable<IngrdientResponse>observable=mealService.getAllIngrdient().subscribeOn(Schedulers.io());
+        return observable;
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsByChar(String name) {
+        Observable<MealResponse> observable=mealService.getMealsByChar(name).subscribeOn(Schedulers.io());
+        return  observable;
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsOfCategory(String category) {
+        Observable<MealResponse> observable=mealService.getMealsOfCategory(category).subscribeOn(Schedulers.io());
+        return observable;
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsOfCountries(String country) {
+        Observable<MealResponse>observable=mealService.getMealsOfCountries(country).subscribeOn(Schedulers.io());
+        return observable;
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsoFIngrdients(String ingredient) {
+        Observable<MealResponse>observable=mealService.getMealsoFIngrdients(ingredient).subscribeOn(Schedulers.io());
         return observable;
     }
 }

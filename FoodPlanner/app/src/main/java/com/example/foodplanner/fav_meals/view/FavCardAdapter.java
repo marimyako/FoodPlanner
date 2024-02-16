@@ -1,5 +1,7 @@
 package com.example.foodplanner.fav_meals.view;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +59,7 @@ LocalDataSource localDataSource;
               onClick.onDelClick(meal);
           }
       });
+
 
     }
     public void setMealList(List<Meal> meals) {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.meal_detail.view.MealDetail;
 
@@ -22,10 +23,13 @@ import java.util.List;
 
 public class CountryDetailAdapter extends RecyclerView.Adapter<CountryDetailAdapter.ViewHolder>  {
     Context context;
+    OnClick onClick;
 
-    public CountryDetailAdapter(Context context, List<Meal> list) {
+    public CountryDetailAdapter(Context context, List<Meal> list,OnClick onClick){
         this.context = context;
         this.list = list;
+        this.onClick=onClick;
+
     }
 
     private List<Meal> list;
@@ -59,6 +63,12 @@ public class CountryDetailAdapter extends RecyclerView.Adapter<CountryDetailAdap
 
             }
         });
+        holder.addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onFavClick(meal);
+            }
+        });
     }
 
     @Override
@@ -73,11 +83,14 @@ public class CountryDetailAdapter extends RecyclerView.Adapter<CountryDetailAdap
         TextView countryitemname;
         ImageView countryitemimage;
         CardView countryitemcard;
+
+        ImageView addbtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             countryitemimage=itemView.findViewById(R.id.countryitemimage);
             countryitemname=itemView.findViewById(R.id.countryitemtv);
             countryitemcard=itemView.findViewById(R.id.countryitemcard);
+            addbtn=itemView.findViewById(R.id.addFavorite);
         }
     }
 }

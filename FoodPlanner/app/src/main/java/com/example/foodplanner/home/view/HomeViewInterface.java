@@ -10,12 +10,7 @@ import java.util.List;
 public interface HomeViewInterface {
     void ViewRandomMeal(List<Meal> models);
     void ViewAllCategory(List<Category>models);
-
     void ViewAllCountries(List<Meal>models);
-
     void showerror(String  error);
-
-
-    public void addProuduct(Meal meal);
-
+    void addMeal(Meal meal);
 }

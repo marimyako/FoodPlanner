@@ -16,7 +16,7 @@
         android:label="fragment_message"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:name="com.example.foodplanner.Search"
+        android:name="com.example.foodplanner.search.view.Search"
         android:id="@+id/searchfragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_search" />

@@ -10,6 +10,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -48,5 +49,16 @@ public class Categorypresenter implements Categorypresenterinterface{
 
                     }
                 });
+    }
+
+    @Override
+    public void addToFav(Meal meal) {
+        Completable completable=_repo.insertmeal(meal);
+        completable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> {
+                    _view.showerror("Meal added to favorites successfully");
+
+                }, error -> {
+                    _view.showerror("Error adding Meal to favorites");});
     }
 }

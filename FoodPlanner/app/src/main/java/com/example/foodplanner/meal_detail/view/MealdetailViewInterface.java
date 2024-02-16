@@ -6,4 +6,9 @@ import java.util.List;
 
 public interface MealdetailViewInterface {
     void ViewMealDetail(List<Meal> meal);
+    void showerror(String  error);
+
+    void addMeal(Meal meal);
+
+    void delelteFav(Meal meal);
 }

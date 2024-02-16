@@ -65,6 +65,32 @@ public class Repository implements  RepositoryInterface{
     }
 
     @Override
+    public Observable<IngrdientResponse> getAllIngrdient() {
+        return remoteDataSource.getAllIngrdient();
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsByChar(String name) {
+        return remoteDataSource.getMealsByChar(name);
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsOfCategory(String category) {
+        return remoteDataSource.getMealsOfCategory(category);
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsOfCountries(String country) {
+        return remoteDataSource.getMealsOfCountries(country);
+    }
+
+    @Override
+    public Observable<MealResponse> getMealsoFIngrdients(String ingredient) {
+        return remoteDataSource.getMealsoFIngrdients(ingredient);
+    }
+
+
+    @Override
     public Completable insertmeal(Meal meal) {
         return localDataSource.insertmeal(meal);
     }

@@ -10,6 +10,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -51,4 +52,16 @@ public class Countrypresenter implements Countrypresenterinterface {
                     }
                 });
     }
-}
+
+    @Override
+    public void addToFav(Meal meal) {
+        Completable completable=_repo.insertmeal(meal);
+        completable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> {
+                    countryViewInterface.showerror("Meal added to favorites successfully");
+
+                }, error -> {
+                    countryViewInterface.showerror("Error adding Meal to favorites");});
+    }
+    }
+

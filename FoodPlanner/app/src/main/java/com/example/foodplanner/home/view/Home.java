@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Model.Category;
-import com.example.foodplanner.Model.Country;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
@@ -109,14 +108,15 @@ public class Home extends Fragment implements HomeViewInterface , OnClick {
     }
 
     @Override
-    public void addProuduct(Meal meal) {
+    public void addMeal(Meal meal) {
     homePresenter.addToFav(meal);
     }
 
 
+
     @Override
     public void onFavClick(Meal meal) {
-        addProuduct(meal);
+        addMeal(meal);
     }
 
     @Override

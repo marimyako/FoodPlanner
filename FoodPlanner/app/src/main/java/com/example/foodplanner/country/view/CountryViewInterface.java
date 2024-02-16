@@ -7,4 +7,7 @@ import java.util.List;
 public interface CountryViewInterface {
 
     void ViewCountryMeal(List<Meal> models);
+    void showerror(String  error);
+
+    void addMeal(Meal meal);
 }

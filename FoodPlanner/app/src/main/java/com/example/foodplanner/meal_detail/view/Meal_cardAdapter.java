@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.Model.Country;
 import com.example.foodplanner.Model.Ingrdient;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 
 import java.util.List;
@@ -25,20 +26,20 @@ public class Meal_cardAdapter extends RecyclerView.Adapter<Meal_cardAdapter.View
 
         List<Ingrdient> ingrdientofmeals;
 
+        OnClick onClick;
+
     public void setMealList(List<Ingrdient> meals) {
         this.ingrdientofmeals= meals;
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView ingrdentname;
 
-        ImageView ingrdentimage;
         View view;
         CardView ingrdentcard;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view=itemView;
             ingrdentname=itemView.findViewById(R.id.ingrdenttv);
-            ingrdentimage=itemView.findViewById(R.id.ingrdentimage);
             ingrdentcard=itemView.findViewById(R.id.ingrdentcard);
 
 
@@ -46,9 +47,10 @@ public class Meal_cardAdapter extends RecyclerView.Adapter<Meal_cardAdapter.View
     }
 
 
-    public Meal_cardAdapter(Context context, List<Ingrdient> meal) {
+    public Meal_cardAdapter(Context context, List<Ingrdient> meal,OnClick onClick) {
         this.context = context;
         this.ingrdientofmeals = meal;
+        this.onClick=onClick;
     }
 
 
@@ -64,8 +66,7 @@ public class Meal_cardAdapter extends RecyclerView.Adapter<Meal_cardAdapter.View
     @Override
     public void onBindViewHolder(@NonNull Meal_cardAdapter.ViewHolder holder, int position) {
         holder.ingrdentname.setText(ingrdientofmeals.get(position).getName());
-        String url = ingrdientofmeals.get(position).getImage();
-        Glide.with(context).load(url).into(holder.ingrdentimage);
+
     }
 
     @Override

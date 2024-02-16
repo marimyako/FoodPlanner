@@ -20,6 +20,16 @@ public interface RepositoryInterface {
     Observable<MealResponse> getCountryMeals(String country);
     Observable<MealResponse> getMealsByName(String name);
 
+    Observable<IngrdientResponse> getAllIngrdient();
+
+    Observable<MealResponse> getMealsByChar(String name);
+
+    Observable<MealResponse> getMealsOfCategory(String category);
+
+    Observable<MealResponse> getMealsOfCountries(String country);
+
+    Observable<MealResponse> getMealsoFIngrdients(String ingredient);
+
     Completable insertmeal (Meal meal);
     Completable deletemeal(Meal meal);
     Flowable<List<Meal>> getStoredMeals();

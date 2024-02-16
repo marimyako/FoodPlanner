@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.meal_detail.view.MealDetail;
 
@@ -28,11 +29,13 @@ public class CategotyDetailAdapter extends RecyclerView.Adapter<CategotyDetailAd
     Context context;
 
     private List<Meal> list;
+    OnClick onClick;
     private static final String TAG = "CategotyDetailAdapter";
 
-    public CategotyDetailAdapter(Context context, List<Meal> list) {
+    public CategotyDetailAdapter(Context context, List<Meal> list,OnClick onClick) {
         this.context = context;
         this.list = list;
+        this.onClick=onClick;
     }
     public void setCategoryMealList(List<Meal> meals) {
         this.list= meals;
@@ -62,6 +65,12 @@ public class CategotyDetailAdapter extends RecyclerView.Adapter<CategotyDetailAd
                 Log.i(TAG, "onClick: "+m);
             }
         });
+        holder.addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onFavClick(meal);
+            }
+        });
 
     }
 
@@ -78,11 +87,14 @@ public class CategotyDetailAdapter extends RecyclerView.Adapter<CategotyDetailAd
         TextView categoryitemname;
         ImageView categoryitemimage;
         CardView  categoryitemcard;
+
+        ImageView addbtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryitemimage=itemView.findViewById(R.id.categoryitemimage);
             categoryitemname=itemView.findViewById(R.id.categoryitemtv);
             categoryitemcard=itemView.findViewById(R.id.categoryitemcard);
+            addbtn=itemView.findViewById(R.id.addFavorite);
         }
     }
 }

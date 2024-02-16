@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.example.foodplanner.Model.Ingrdient;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.category.view.CategoryScreen;
 import com.example.foodplanner.meal_detail.presenter.Mealdetailpresenter;
@@ -26,7 +28,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealDetail extends AppCompatActivity implements MealdetailViewInterface {
+public class MealDetail extends AppCompatActivity implements MealdetailViewInterface , OnClick {
     private static final String TAG = "MealDetail";
 TextView mealname;
 TextView mealcountry;
@@ -48,6 +50,7 @@ String[] videoSplit;
 String vId;
 
 Meal model;
+OnClick onClick;
 
     List<Ingrdient> ingredient= new ArrayList<Ingrdient>();
     @Override
@@ -73,9 +76,24 @@ Meal model;
 
 
     }
+    @Override
+    public void addMeal(Meal meal) {
+        mealdetailpresenter.addToFav(meal);
+    }
+
+    @Override
+    public void delelteFav(Meal meal) {
+        delelteFav(meal);
+    }
+
+    @Override
+    public void onFavClick(Meal meal) {
+        addMeal(meal);
+    }
 
     @Override
     public void ViewMealDetail(List<Meal> meal) {
+      //  Meal meal1 = null;
         model=meal.get(0);
         mealname.setText(model.getStrMeal());
         mealcountry.setText(model.getStrArea());
@@ -96,7 +114,7 @@ Meal model;
         mealsteps.setText(model.getStrInstructions());
         Glide.with(this).load(model.getStrMealThumb()).into(mealimage);
         gridLayoutManager=new GridLayoutManager(this,2);
-        mealCardAdapter=new Meal_cardAdapter(this,ingredient);
+        mealCardAdapter=new Meal_cardAdapter(this,ingredient,this);
         String[] ingredients = {
                 model.getStrIngredient1(),
                 model.getStrIngredient2(),
@@ -114,13 +132,38 @@ Meal model;
 
         for (String ingredientName : ingredients) {
             if (!ingredientName.isEmpty()) {
-                ingredient.add(new Ingrdient(ingredientName, "https://www.themealdb.com/images/ingredients/" + ingredientName + ".png"));
+                ingredient.add(new Ingrdient(ingredientName));
             }
         }
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onFavClick(model);
+            }
+        });
+
+        delbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onDelClick(model);
+            }
+        });
 
         ingrdentrv.setAdapter(mealCardAdapter);
         ingrdentrv.setLayoutManager(gridLayoutManager);
      //   mealCardAdapter.setMealList(ingrdient);
         mealCardAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showerror(String error) {
+        
+    }
+
+
+
+    @Override
+    public void onDelClick(Meal meal) {
+
     }
 }

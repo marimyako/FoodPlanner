@@ -14,6 +14,7 @@ import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.category.presenter.Categorypresenter;
 import com.example.foodplanner.category.presenter.Categorypresenterinterface;
@@ -22,7 +23,10 @@ import com.example.foodplanner.category.presenter.Categorypresenterinterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryScreen extends AppCompatActivity implements CategoryViewInterface {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+
+public class CategoryScreen extends AppCompatActivity implements CategoryViewInterface ,OnClick{
 
     RecyclerView categorydetailrv;
     TextView categorytagtv;
@@ -33,6 +37,8 @@ public class CategoryScreen extends AppCompatActivity implements CategoryViewInt
     String categorymeals;
 
     Meal model;
+
+    OnClick onClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class CategoryScreen extends AppCompatActivity implements CategoryViewInt
         gridLayoutManager = new GridLayoutManager(this, 2);
         categorypresenter = new Categorypresenter(this, Repository.getInstance(Connection.getInstance(this), CategoryScreen.this,LocalDataSource.getInstance(this)));
         categorypresenter.getMeals(categorymeals);
-        categotyDetailAdapter = new CategotyDetailAdapter(this, new ArrayList<>());
+        categotyDetailAdapter = new CategotyDetailAdapter(this, new ArrayList<>(),this);
         categorydetailrv.setAdapter(categotyDetailAdapter);
         categorydetailrv.setLayoutManager(gridLayoutManager);
         categorytagtv.setText(categorymeals);
@@ -60,4 +66,25 @@ public class CategoryScreen extends AppCompatActivity implements CategoryViewInt
         categotyDetailAdapter.setCategoriesMealModelList(meals);
         categotyDetailAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void showerror(String error) {
+
+    }
+
+    @Override
+    public void addMeal(Meal meal) {
+       categorypresenter.addToFav(meal);
+    }
+
+    @Override
+    public void onFavClick(Meal meal) {
+        addMeal(meal);
+    }
+
+    @Override
+    public void onDelClick(Meal meal) {
+
+    }
+
 }

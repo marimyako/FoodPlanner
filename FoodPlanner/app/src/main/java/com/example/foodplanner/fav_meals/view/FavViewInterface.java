@@ -8,8 +8,5 @@ public interface FavViewInterface {
 
     void delelteFav(Meal meal);
     void showdata(List<Meal> meals);
-
-    void showdata(Meal meal);
-
     void showerror(String errormsg);
 }

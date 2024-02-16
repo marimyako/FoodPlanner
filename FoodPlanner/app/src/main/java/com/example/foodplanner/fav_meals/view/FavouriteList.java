@@ -75,10 +75,6 @@ public class FavouriteList extends Fragment implements FavViewInterface , OnClic
         favCardAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void showdata(Meal meal) {
-
-    }
 
     @Override
     public void showerror(String errormsg) {
@@ -87,14 +83,11 @@ public class FavouriteList extends Fragment implements FavViewInterface , OnClic
 
     @Override
     public void onFavClick(Meal meal) {
-    showdata(meal);
+    showdata((List<Meal>) meal);
     }
 
     @Override
     public void onDelClick(Meal meal) {
         delelteFav(meal);
-
-
-
     }
 }
