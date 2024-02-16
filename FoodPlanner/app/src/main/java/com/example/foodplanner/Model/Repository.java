@@ -2,54 +2,80 @@ package com.example.foodplanner.Model;
 
 import android.content.Context;
 
-import com.example.foodplanner.Network.NetworkCallBack;
+import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Network.RemoteDataSource;
+
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 
 public class Repository implements  RepositoryInterface{
 
     private Context context;
 
     RemoteDataSource remoteDataSource;
-    private static  Repository repository=null;
+    LocalDataSource localDataSource;
 
-    public Repository(RemoteDataSource remoteDataSource,Context context) {
+    public Repository(Context context, RemoteDataSource remoteDataSource, LocalDataSource localDataSource) {
         this.context = context;
         this.remoteDataSource = remoteDataSource;
+        this.localDataSource = localDataSource;
     }
 
-    public static Repository getInstance(RemoteDataSource remoteDataSource,Context context){
+    private static  Repository repository=null;
+
+
+
+    public static Repository getInstance(RemoteDataSource remoteDataSource,Context context, LocalDataSource localDataSource){
         if (repository==null){
-            repository=new Repository(remoteDataSource,context);
+            repository=new Repository(context,remoteDataSource,localDataSource);
         }
         return repository;
     }
     @Override
-    public void getRandomMeal(NetworkCallBack networkCallBack) {
-        remoteDataSource.getRandomMeals(networkCallBack);
+    public Observable<MealResponse> getRandomMeal() {
+     return  remoteDataSource.getRandomMeals();
     }
 
     @Override
-    public void getAllCategories(NetworkCallBack networkCallBack) {
-        remoteDataSource.getAllCategories(networkCallBack);
+    public Observable<CategoryResponse> getAllCategories() {
+      return   remoteDataSource.getAllCategories();
     }
 
     @Override
-    public void getAllCountries(NetworkCallBack networkCallBack) {
-        remoteDataSource.getAllCountries(networkCallBack);
+    public Observable<MealResponse> getAllCountries() {
+       return remoteDataSource.getAllCountries();
     }
 
     @Override
-    public void getCategoryMeals(NetworkCallBack networkCallBack, String category) {
-        remoteDataSource.getCategoryMeals(networkCallBack,category);
+    public Observable<MealResponse> getCategoryMeals(String category) {
+       return remoteDataSource.getCategoryMeals(category);
     }
 
     @Override
-    public void getCountryMeals(NetworkCallBack networkCallBack, String country) {
-        remoteDataSource.getCountryMeals(networkCallBack,country);
+    public Observable<MealResponse> getCountryMeals(String country) {
+       return remoteDataSource.getCountryMeals(country);
     }
 
     @Override
-    public void getMealsByName(NetworkCallBack networkCallBack, String name) {
-          remoteDataSource.getMealsByName(networkCallBack,name);
+    public Observable<MealResponse> getMealsByName(String name) {
+       return remoteDataSource.getMealsByName(name);
+    }
+
+    @Override
+    public Completable insertmeal(Meal meal) {
+        return localDataSource.insertmeal(meal);
+    }
+
+    @Override
+    public Completable deletemeal(Meal meal) {
+        return localDataSource.deletemeal(meal);
+    }
+
+    @Override
+    public Flowable<List<Meal>> getStoredMeals() {
+        return localDataSource.getAllStoredMeal();
     }
 }

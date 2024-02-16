@@ -6,6 +6,8 @@ import com.example.foodplanner.Model.CategoryResponse;
 import com.example.foodplanner.Model.CountryResponse;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.MealResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.List;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Cache;
@@ -30,19 +33,21 @@ public class Connection implements RemoteDataSource {
 
 
     public Connection(Context context){
-        File cacheDirectory = new File(context.getCacheDir(), "offline_cache_directory");
+       /* File cacheDirectory = new File(context.getCacheDir(), "offline_cache_directory");
         Cache cache = new Cache(cacheDirectory,100 *1024 * 1024);
 
         OkHttpClient okHttpClient = new OkHttpClient
-                .Builder().cache(cache).build();
+                .Builder().cache(cache).build();*/
+        Gson gson=new GsonBuilder().setLenient().create();
 
-        Retrofit.Builder retrofitB = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Base_url)
-                .client(okHttpClient)
+               // .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create());
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .build();
 
-        Retrofit retrofit = retrofitB.build();
+     //   Retrofit retrofit = retrofitB.build();
 
         mealService = retrofit.create(MealService.class);
     }
@@ -54,57 +59,38 @@ public class Connection implements RemoteDataSource {
         return mealResponse;
     }
     @Override
-    public void getRandomMeals(NetworkCallBack networkCallBack) {
-
-        List<Meal> list=new ArrayList<>();
-        Flowable<MealResponse> mealModelResponseSingle= mealService.getRandomMeals();
-        mealModelResponseSingle.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .onErrorComplete()
-                .repeat(10)
-                .doOnNext(e-> list.addAll(e.getMealsModel()))
-                .doOnComplete(()->networkCallBack.onSuccessResultRandom(list))
-                .subscribe();
-
+    public Observable<MealResponse> getRandomMeals() {
+        Observable<MealResponse> observable=mealService.getRandomMeals().subscribeOn(Schedulers.io());
+        return observable;
     }
 
     @Override
-    public void getAllCategories(NetworkCallBack networkCallBack) {
-        Single<CategoryResponse> categoryResponseSingle= mealService.getAllCategories();
-        categoryResponseSingle.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .onErrorComplete()
-                .subscribe(item -> networkCallBack.onSuccessResultCategories(item.getCategories()));
+    public Observable<CategoryResponse> getAllCategories() {
+        Observable<CategoryResponse> observable=mealService.getAllCategories().subscribeOn(Schedulers.io());
+        return observable;
     }
 
     @Override
-    public void getAllCountries(NetworkCallBack networkCallBack) {
-        Single<MealResponse> countryResponseSingle= mealService.getAllCountries("list");
-        countryResponseSingle.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .onErrorComplete()
-                .subscribe(item -> networkCallBack.onSuccessResultCountries(item.getMealsModel()));
+    public Observable<MealResponse> getAllCountries() {
+        Observable<MealResponse>observable=mealService.getAllCountries("list").subscribeOn(Schedulers.io());
+        return observable;
     }
 
     @Override
-    public void getCategoryMeals(NetworkCallBack networkCallBack, String category) {
-        Single<MealResponse> mealModelResponseSingle= mealService.getCategoryMeals(category);
-        mealModelResponseSingle.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .onErrorComplete()
-                .subscribe(item -> networkCallBack.onSuccessResultRandom(item.getMealsModel()));
+    public Observable<MealResponse> getCategoryMeals(String category) {
+        Observable<MealResponse>observable=mealService.getCategoryMeals(category).subscribeOn(Schedulers.io());
+        return observable;
     }
 
     @Override
-    public void getCountryMeals(NetworkCallBack networkCallBack, String country) {
-        Single<MealResponse> mealModelResponseSingle= mealService.getCountryMeals(country);
-        mealModelResponseSingle.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .onErrorComplete()
-                .subscribe(item -> networkCallBack.onSuccessResultRandom(item.getMealsModel()));
+    public Observable<MealResponse> getCountryMeals(String country) {
+        Observable<MealResponse>observable=mealService.getCountryMeals(country).subscribeOn(Schedulers.io());
+        return observable;
     }
 
     @Override
-    public void getMealsByName(NetworkCallBack networkCallBack, String name) {
-        Single<MealResponse> mealModelResponseSingle= mealService.getMealsByName(name);
-        mealModelResponseSingle.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(item -> networkCallBack.onSuccessResultRandom(item.getMealsModel()));
+    public Observable<MealResponse> getMealsByName(String name) {
+        Observable<MealResponse>observable=mealService.getMealsByName(name).subscribeOn(Schedulers.io());
+        return observable;
     }
-
-
 }

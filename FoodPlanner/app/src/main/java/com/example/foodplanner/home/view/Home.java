@@ -12,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Country;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.presenter.HomePresenter;
 
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Home extends Fragment implements HomeViewInterface {
+public class Home extends Fragment implements HomeViewInterface , OnClick {
 
     RecyclerView randommealrecyclerview;
     RecyclerView categoryrecyclerview;
@@ -53,13 +55,12 @@ public class Home extends Fragment implements HomeViewInterface {
         super.onViewCreated(view, savedInstanceState);
         initUI(view);
         mealLayoutManger=new LinearLayoutManager(view.getContext());
-        viewAdapter=new ViewAdapter(view.getContext(),new ArrayList<>());
+        viewAdapter=new ViewAdapter(view.getContext(),new ArrayList<>(),this);
         randommealrecyclerview.setLayoutManager(mealLayoutManger);
         randommealrecyclerview.setAdapter(viewAdapter);
         randommealrecyclerview.setHasFixedSize(true);
         mealLayoutManger.setOrientation(RecyclerView.HORIZONTAL);
-        homePresenter=new HomePresenter(this, Repository.getInstance(Connection.getInstance(getContext()),
-                view.getContext()));
+        homePresenter=new HomePresenter(this, Repository.getInstance(Connection.getInstance(getContext()),view.getContext(), LocalDataSource.getInstance(getContext())));
         homePresenter.getRandomMeal();
 
         categorylayoutmanger=new LinearLayoutManager(view.getContext());
@@ -102,5 +103,24 @@ public class Home extends Fragment implements HomeViewInterface {
         countryAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showerror(String error) {
 
+    }
+
+    @Override
+    public void addProuduct(Meal meal) {
+    homePresenter.addToFav(meal);
+    }
+
+
+    @Override
+    public void onFavClick(Meal meal) {
+        addProuduct(meal);
+    }
+
+    @Override
+    public void  onDelClick(Meal meal) {
+
+    }
 }

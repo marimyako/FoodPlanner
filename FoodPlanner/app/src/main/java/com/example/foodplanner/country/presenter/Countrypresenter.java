@@ -2,13 +2,19 @@ package com.example.foodplanner.country.presenter;
 
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.Model.MealResponse;
 import com.example.foodplanner.Model.RepositoryInterface;
-import com.example.foodplanner.Network.NetworkCallBack;
 import com.example.foodplanner.country.view.CountryViewInterface;
 
 import java.util.List;
 
-public class Countrypresenter implements NetworkCallBack,Countrypresenterinterface {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+
+public class Countrypresenter implements Countrypresenterinterface {
     RepositoryInterface _repo;
 
     public Countrypresenter(RepositoryInterface _repo, CountryViewInterface countryViewInterface) {
@@ -17,28 +23,32 @@ public class Countrypresenter implements NetworkCallBack,Countrypresenterinterfa
     }
 
     CountryViewInterface countryViewInterface;
-    @Override
-    public void onSuccessResultRandom(List<Meal> meals) {
-      countryViewInterface.ViewCountryMeal(meals);
-    }
 
-    @Override
-    public void onSuccessResultCategories(List<Category> category) {
-
-    }
-
-    @Override
-    public void onSuccessResultCountries(List<Meal> meal) {
-
-    }
-
-    @Override
-    public void onFailureResult(String errormsg) {
-
-    }
 
     @Override
     public void getMeals(String countries) {
-       _repo.getCountryMeals(this,countries);
+        Observable<MealResponse>observable= _repo.getCountryMeals(countries);
+        observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MealResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull MealResponse mealResponse) {
+                        countryViewInterface.ViewCountryMeal(mealResponse.getMealsModel());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

@@ -7,27 +7,28 @@ import com.example.foodplanner.Model.MealResponse;
 import java.util.Locale;
 
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface MealService {
    @GET("random.php")
-   Flowable<MealResponse> getRandomMeals();
+   Observable<MealResponse> getRandomMeals();
 
    @GET("categories.php")
-   Single<CategoryResponse> getAllCategories();
+   Observable<CategoryResponse> getAllCategories();
 
    @GET("list.php")
-   Single<MealResponse> getAllCountries(@Query("a") String country);
+   Observable<MealResponse> getAllCountries(@Query("a") String country);
 
 
    @GET("filter.php")
-   Single<MealResponse> getCategoryMeals(@Query("c") String categoryName);
+   Observable<MealResponse> getCategoryMeals(@Query("c") String categoryName);
 
    @GET("filter.php")
-   Single<MealResponse> getCountryMeals(@Query("a") String categoryName);
+   Observable<MealResponse> getCountryMeals(@Query("a") String categoryName);
 
    @GET("search.php")
-   Single<MealResponse> getMealsByName(@Query("s") String name);
+   Observable<MealResponse> getMealsByName(@Query("s") String name);
 }

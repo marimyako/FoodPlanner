@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.category.view.CategoryScreen;
 import com.example.foodplanner.meal_detail.view.MealDetail;
@@ -28,26 +29,28 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
     private final Context context;
 
     private List<Meal> list;
+    OnClick onClick;
 
 
-    public ViewAdapter(Context context, List<Meal> list) {
+    public ViewAdapter(Context context, List<Meal> list,OnClick onClick) {
         this.context = context;
         this.list = list;
+        this.onClick=onClick;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public ImageView imageView;
-        public TextView name;
-        public CardView cardFavorate ;
-        public CardView cardItem;
-        public View view;
+         ImageView imageView;
+         TextView name;
+        ImageView addbtn;
+        CardView cardItem;
+         View view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
             imageView =itemView.findViewById(R.id.imageItem);
             name = itemView.findViewById(R.id.itemText);
             cardItem = itemView.findViewById(R.id.pagerItem);
-            cardFavorate = itemView.findViewById(R.id.itemCardFavorite);
+            addbtn = itemView.findViewById(R.id.addFavorite);
         }
     }
     public void setViewPagerAdepterList(List<Meal> mealModels) {
@@ -78,7 +81,12 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
                 Log.i(TAG, "onClick: "+m);
             }
         });
-
+        holder.addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onFavClick(meal);
+            }
+        });
     }
 
     @Override

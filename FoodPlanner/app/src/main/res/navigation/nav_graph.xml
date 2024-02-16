@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/favfragment"
-        android:name="com.example.foodplanner.FavouriteList"
+        android:name="com.example.foodplanner.fav_meals.view.FavouriteList"
         android:label="fragment_home"
         tools:layout="@layout/fragment_favourite_list" />
 </navigation>

@@ -13,9 +13,8 @@
     <ImageView
         android:id="@+id/imageItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_height="145dp"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/itemText"
@@ -27,21 +26,15 @@
         android:textSize="20dp"
         android:textColor="@color/black"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/itemCardFavorite"
+
+    <ImageView
+        android:id="@+id/addFavorite"
+        android:layout_marginLeft="340dp"
+       android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="10dp">
+        android:background="@color/myprimary"
+        android:padding="5dp"
+        app:srcCompat="@drawable/favorite" />
 
-        <ImageView
-            android:id="@+id/itemFavorite"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/myprimary"
-            android:padding="5dp"
-            app:srcCompat="@drawable/favorite" />
-    </androidx.cardview.widget.CardView>
 </androidx.cardview.widget.CardView>

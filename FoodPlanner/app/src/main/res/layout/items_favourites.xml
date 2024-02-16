@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/favacard"
         android:layout_width="383dp"
         android:layout_height="159dp"
         android:layout_marginTop="160dp"
@@ -30,49 +30,48 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/favmealimage"
                 android:layout_width="150dp"
                 android:layout_height="130dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/koshary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/favmealname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="36dp"
-                android:text="koshary"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toEndOf="@+id/favmealimage"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/favmealcountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginBottom="28dp"
-                android:text="Egyption Food"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintStart_toEndOf="@+id/favmealimage"
+                app:layout_constraintTop_toBottomOf="@+id/favmealname"
+                app:layout_constraintVertical_bias="0.353" />
 
             <ImageView
+                android:id="@+id/delbtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/heartminus"
-                android:backgroundTint="@color/myprimary"
+                android:background="@drawable/delete"
                 tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="327dp"
+                tools:layout_editor_absoluteX="317dp"
                 tools:layout_editor_absoluteY="103dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <ImageView
+        android:id="@+id/backbtn"
         android:layout_width="38dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"

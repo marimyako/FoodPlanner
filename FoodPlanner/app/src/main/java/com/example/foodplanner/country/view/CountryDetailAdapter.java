@@ -3,7 +3,6 @@ package com.example.foodplanner.country.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.Model.Meal;
-import com.example.foodplanner.Network.NetworkCallBack;
 import com.example.foodplanner.R;
-import com.example.foodplanner.category.view.CategotyDetailAdapter;
 import com.example.foodplanner.meal_detail.view.MealDetail;
 
 import java.util.List;

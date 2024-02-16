@@ -13,4 +13,9 @@ public interface HomeViewInterface {
 
     void ViewAllCountries(List<Meal>models);
 
+    void showerror(String  error);
+
+
+    public void addProuduct(Meal meal);
+
 }

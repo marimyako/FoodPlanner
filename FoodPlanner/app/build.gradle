@@ -61,7 +61,7 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
-    implementation 'androidx.room:room-rxjava3:2.5.0'
+    implementation 'androidx.room:room-rxjava3:2.4.1'
     //
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28'

@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Model.Ingrdient;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
 import com.example.foodplanner.R;
+import com.example.foodplanner.category.view.CategoryScreen;
 import com.example.foodplanner.meal_detail.presenter.Mealdetailpresenter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -65,7 +67,7 @@ Meal model;
         ingrdentrv=findViewById(R.id.ingrdentsrv);
         mealsteps=findViewById(R.id.mealsteps);
         mealvideo=findViewById(R.id.mealvideo);
-        mealdetailpresenter=new Mealdetailpresenter(this, Repository.getInstance(Connection.getInstance(this),MealDetail.this));
+        mealdetailpresenter=new Mealdetailpresenter(this, Repository.getInstance(Connection.getInstance(this), MealDetail.this, LocalDataSource.getInstance(this)));
         mealdetailpresenter.getMealdetail(mealName);
         Log.i(TAG, "onCreate: "+mealName);
 

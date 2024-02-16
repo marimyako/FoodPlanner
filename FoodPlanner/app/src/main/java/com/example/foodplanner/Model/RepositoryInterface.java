@@ -1,16 +1,26 @@
 package com.example.foodplanner.Model;
 
-import com.example.foodplanner.Network.NetworkCallBack;
+import com.airbnb.lottie.L;
+
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 
 public interface RepositoryInterface {
-    void getRandomMeal(NetworkCallBack networkCallBack);
+    Observable<MealResponse> getRandomMeal();
 
-    void getAllCategories(NetworkCallBack networkCallBack);
+    Observable<CategoryResponse> getAllCategories();
 
-    void getAllCountries(NetworkCallBack networkCallBack);
+    Observable<MealResponse> getAllCountries();
 
-    void getCategoryMeals(NetworkCallBack networkCallBack,String category);
+    Observable<MealResponse> getCategoryMeals(String category);
 
-    void getCountryMeals(NetworkCallBack networkCallBack,String country);
-    void getMealsByName(NetworkCallBack networkCallBack,String name);
+    Observable<MealResponse> getCountryMeals(String country);
+    Observable<MealResponse> getMealsByName(String name);
+
+    Completable insertmeal (Meal meal);
+    Completable deletemeal(Meal meal);
+    Flowable<List<Meal>> getStoredMeals();
 }

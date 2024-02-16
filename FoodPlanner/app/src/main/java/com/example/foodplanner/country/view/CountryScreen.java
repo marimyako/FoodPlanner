@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
 import com.example.foodplanner.R;
+import com.example.foodplanner.category.view.CategoryScreen;
 import com.example.foodplanner.country.presenter.Countrypresenter;
 
 
@@ -38,7 +40,7 @@ public class CountryScreen extends AppCompatActivity implements CountryViewInter
         countrydetailrv = findViewById(R.id.mealscountryRV);
         countrytagtv = findViewById(R.id.countrytagTV);
         gridLayoutManager = new GridLayoutManager(this, 2);
-        countrypresenter = new Countrypresenter (Repository.getInstance(Connection.getInstance(this), CountryScreen.this),this);
+        countrypresenter = new Countrypresenter (Repository.getInstance(Connection.getInstance(this), CountryScreen.this, LocalDataSource.getInstance(this)),this);
         countrypresenter.getMeals(countrymeals);
         countryDetailAdapter = new CountryDetailAdapter(this, new ArrayList<>());
         countrydetailrv.setAdapter(countryDetailAdapter);

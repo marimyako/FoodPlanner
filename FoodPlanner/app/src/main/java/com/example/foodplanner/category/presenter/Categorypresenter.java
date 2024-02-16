@@ -1,16 +1,20 @@
 package com.example.foodplanner.category.presenter;
 
 import com.example.foodplanner.Model.Category;
-import com.example.foodplanner.Model.Country;
 import com.example.foodplanner.Model.Meal;
-import com.example.foodplanner.Model.Repository;
+import com.example.foodplanner.Model.MealResponse;
 import com.example.foodplanner.Model.RepositoryInterface;
-import com.example.foodplanner.Network.NetworkCallBack;
 import com.example.foodplanner.category.view.CategoryViewInterface;
 
 import java.util.List;
 
-public class Categorypresenter implements Categorypresenterinterface, NetworkCallBack {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+
+public class Categorypresenter implements Categorypresenterinterface{
     RepositoryInterface _repo;
 
     public Categorypresenter( CategoryViewInterface _view,RepositoryInterface _repo) {
@@ -21,27 +25,28 @@ public class Categorypresenter implements Categorypresenterinterface, NetworkCal
     CategoryViewInterface _view;
     @Override
     public void getMeals(String categories) {
-        _repo.getCategoryMeals(this,categories);
-    }
+        Observable<MealResponse> observable= _repo.getCategoryMeals(categories);
+        observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MealResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-    @Override
-    public void onSuccessResultRandom(List<Meal> meals) {
-        _view.ViewCategoriesMeal(meals);
-    }
+                    }
 
-    @Override
-    public void onSuccessResultCategories(List<Category> category) {
+                    @Override
+                    public void onNext(@NonNull MealResponse mealResponse) {
+                        _view.ViewCategoriesMeal(mealResponse.getMealsModel());
+                    }
 
-    }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-    @Override
-    public void onSuccessResultCountries(List<Meal> meal) {
+                    }
 
-    }
+                    @Override
+                    public void onComplete() {
 
-
-    @Override
-    public void onFailureResult(String errormsg) {
-   System.out.println("error categoryyyymeals ");
+                    }
+                });
     }
 }

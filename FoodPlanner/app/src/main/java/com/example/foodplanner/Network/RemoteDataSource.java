@@ -1,15 +1,20 @@
 package com.example.foodplanner.Network;
 
+import com.example.foodplanner.Model.CategoryResponse;
+import com.example.foodplanner.Model.MealResponse;
+
+import io.reactivex.rxjava3.core.Observable;
+
 public interface RemoteDataSource {
-    void getRandomMeals (NetworkCallBack networkCallBack);
+    Observable<MealResponse> getRandomMeals ();
 
-    void getAllCategories(NetworkCallBack networkCallBack);
+    Observable<CategoryResponse> getAllCategories();
 
-    void getAllCountries(NetworkCallBack networkCallBack);
+    Observable<MealResponse> getAllCountries();
 
-    void getCategoryMeals(NetworkCallBack networkCallBack,String category);
+    Observable <MealResponse>getCategoryMeals(String category);
 
-    void getCountryMeals(NetworkCallBack networkCallBack,String country);
-    void  getMealsByName(NetworkCallBack networkCallBack,String name);
+    Observable<MealResponse> getCountryMeals(String country);
+    Observable <MealResponse> getMealsByName(String name);
 
 }

@@ -1,15 +1,20 @@
 package com.example.foodplanner.meal_detail.presenter;
 
 import com.example.foodplanner.Model.Category;
-import com.example.foodplanner.Model.Country;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.Model.MealResponse;
 import com.example.foodplanner.Model.Repository;
-import com.example.foodplanner.Network.NetworkCallBack;
 import com.example.foodplanner.meal_detail.view.MealdetailViewInterface;
 
 import java.util.List;
 
-public class Mealdetailpresenter implements MealdetailpresenterInterface, NetworkCallBack {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+
+public class Mealdetailpresenter implements MealdetailpresenterInterface{
 
     MealdetailViewInterface mealdetailViewInterface;
     Repository repository;
@@ -21,27 +26,29 @@ public class Mealdetailpresenter implements MealdetailpresenterInterface, Networ
 
     @Override
     public void getMealdetail(String MealDetail) {
-       repository.getMealsByName(this,MealDetail);
+        Observable<MealResponse> observable= repository.getMealsByName(MealDetail);
+        observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MealResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull MealResponse mealResponse) {
+                     mealdetailViewInterface.ViewMealDetail(mealResponse.getMealsModel());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
-    @Override
-    public void onSuccessResultRandom(List<Meal> meals) {
-        mealdetailViewInterface.ViewMealDetail(meals);
-    }
-
-    @Override
-    public void onSuccessResultCategories(List<Category> category) {
-
-    }
-
-    @Override
-    public void onSuccessResultCountries(List<Meal> meal) {
-
-    }
-
-
-    @Override
-    public void onFailureResult(String errormsg) {
-        System.out.println("error offffffffffmeals ");
-    }
 }
