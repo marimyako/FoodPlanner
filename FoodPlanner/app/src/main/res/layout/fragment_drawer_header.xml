@@ -8,9 +8,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView4"
-        android:layout_width="162dp"
+        android:layout_width="380dp"
         android:layout_height="137dp"
         android:layout_marginBottom="228dp"
-        android:src="@drawable/account" />
+        android:background="@drawable/drawerr" />
 
 </LinearLayout>

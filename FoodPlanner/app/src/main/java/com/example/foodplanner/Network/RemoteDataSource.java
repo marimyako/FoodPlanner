@@ -1,6 +1,8 @@
 package com.example.foodplanner.Network;
 
 import com.example.foodplanner.Model.CategoryResponse;
+import com.example.foodplanner.Model.Country;
+import com.example.foodplanner.Model.CountryResponse;
 import com.example.foodplanner.Model.IngrdientResponse;
 import com.example.foodplanner.Model.MealResponse;
 
@@ -29,6 +31,7 @@ public interface RemoteDataSource {
 
     Observable<MealResponse> getMealsoFIngrdients(String ingredient);
 
+    Observable<CountryResponse> getfullofCountries();
 
 
 }

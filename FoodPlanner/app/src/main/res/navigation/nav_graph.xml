@@ -12,11 +12,11 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.foodplanner.Profile"
+        android:name="com.example.foodplanner.ui.Profile"
         android:label="fragment_message"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:name="com.example.foodplanner.search.view.Search"
+        android:name="com.example.foodplanner.search.view.searchfragment"
         android:id="@+id/searchfragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_search" />
@@ -25,4 +25,10 @@
         android:name="com.example.foodplanner.fav_meals.view.FavouriteList"
         android:label="fragment_home"
         tools:layout="@layout/fragment_favourite_list" />
+    <fragment
+        android:id="@+id/plan"
+        android:name="com.example.foodplanner.MealPlan.view.Plan"
+        android:label="fragment_plan"
+        tools:layout="@layout/fragment_plan" />
+
 </navigation>

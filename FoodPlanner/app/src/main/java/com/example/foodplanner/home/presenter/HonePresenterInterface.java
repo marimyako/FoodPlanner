@@ -9,4 +9,6 @@ public interface HonePresenterInterface {
     void getCountriesList();
 
     void addToFav(Meal meal);
+
+    void addToPlan(String nameofday);
 }

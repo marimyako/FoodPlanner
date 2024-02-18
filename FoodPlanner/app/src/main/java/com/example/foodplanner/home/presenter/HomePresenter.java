@@ -109,4 +109,9 @@ public class HomePresenter implements HonePresenterInterface{
                     _view.showerror("Error adding Meal to favorites");});
     }
 
+    @Override
+    public void addToPlan(String nameofday) {
+
+    }
+
 }

@@ -30,7 +30,14 @@ public interface RepositoryInterface {
 
     Observable<MealResponse> getMealsoFIngrdients(String ingredient);
 
+    Observable<CountryResponse> getFullofCountries();
+
     Completable insertmeal (Meal meal);
     Completable deletemeal(Meal meal);
     Flowable<List<Meal>> getStoredMeals();
+
+    Completable insertmealplan (MealPlan mealPlan);
+    Completable deletemealplan(MealPlan mealPlan);
+    Flowable<List<MealPlan>> getStoredMealsplan();
+
 }

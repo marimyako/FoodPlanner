@@ -1,6 +1,7 @@
 package com.example.foodplanner.DB;
 
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.Model.MealPlan;
 
 import java.util.List;
 
@@ -15,4 +16,11 @@ public interface LocalDataSourceInterface {
     Completable deletemeal(Meal meal);
 
     Flowable<List<Meal>>  getAllStoredMeal();
+
+
+    Completable insertmealplan(MealPlan mealPlan);
+
+    Completable deletemealplan(MealPlan mealPlan);
+
+    Flowable<List<MealPlan>>  getAllStoredMealPlan();
 }

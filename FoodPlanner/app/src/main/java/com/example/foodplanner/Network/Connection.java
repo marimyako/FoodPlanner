@@ -34,21 +34,13 @@ public class Connection implements RemoteDataSource {
 
 
     public Connection(Context context){
-       /* File cacheDirectory = new File(context.getCacheDir(), "offline_cache_directory");
-        Cache cache = new Cache(cacheDirectory,100 *1024 * 1024);
-
-        OkHttpClient okHttpClient = new OkHttpClient
-                .Builder().cache(cache).build();*/
         Gson gson=new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Base_url)
-               // .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
-
-     //   Retrofit retrofit = retrofitB.build();
 
         mealService = retrofit.create(MealService.class);
     }
@@ -124,4 +116,11 @@ public class Connection implements RemoteDataSource {
         Observable<MealResponse>observable=mealService.getMealsoFIngrdients(ingredient).subscribeOn(Schedulers.io());
         return observable;
     }
+
+    @Override
+    public Observable<CountryResponse> getfullofCountries() {
+    Observable<CountryResponse>observable=mealService.getAllCountries().subscribeOn(Schedulers.io());
+    return observable;
+    }
+
 }

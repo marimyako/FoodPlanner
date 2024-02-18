@@ -89,6 +89,11 @@ public class Repository implements  RepositoryInterface{
         return remoteDataSource.getMealsoFIngrdients(ingredient);
     }
 
+    @Override
+    public Observable<CountryResponse> getFullofCountries() {
+        return remoteDataSource.getfullofCountries();
+    }
+
 
     @Override
     public Completable insertmeal(Meal meal) {
@@ -103,5 +108,20 @@ public class Repository implements  RepositoryInterface{
     @Override
     public Flowable<List<Meal>> getStoredMeals() {
         return localDataSource.getAllStoredMeal();
+    }
+
+    @Override
+    public Completable insertmealplan(MealPlan mealPlan) {
+        return localDataSource.insertmealplan(mealPlan);
+    }
+
+    @Override
+    public Completable deletemealplan(MealPlan mealPlan) {
+        return localDataSource.deletemealplan(mealPlan);
+    }
+
+    @Override
+    public Flowable<List<MealPlan>> getStoredMealsplan() {
+        return localDataSource.getAllStoredMealPlan();
     }
 }

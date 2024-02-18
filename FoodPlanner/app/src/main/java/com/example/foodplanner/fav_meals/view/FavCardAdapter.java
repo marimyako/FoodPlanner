@@ -2,7 +2,10 @@ package com.example.foodplanner.fav_meals.view;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ import com.example.foodplanner.DB.LocalDataSource;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
+import com.example.foodplanner.meal_detail.view.MealDetail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +51,7 @@ LocalDataSource localDataSource;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavCardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavCardAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
       Meal meal=meals.get(position);
       holder.favnametv.setText(meal.getStrMeal());
       holder.favcountrytv.setText(meal.getStrCategory());
@@ -59,7 +63,16 @@ LocalDataSource localDataSource;
               onClick.onDelClick(meal);
           }
       });
+     holder.favcard.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent intent = new Intent(context, MealDetail.class);
+             String m=meals.get(position).getStrMeal();
+             intent.putExtra("MEAL_NAME",m);
+             context.startActivity(intent);
 
+         }
+     });
 
     }
     public void setMealList(List<Meal> meals) {
@@ -89,7 +102,7 @@ LocalDataSource localDataSource;
             favimage=itemView.findViewById(R.id.favmealimage);
             favcountrytv=itemView.findViewById(R.id.favmealcountry);
             delbtn=itemView.findViewById(R.id.delbtn);
-            backbtn=itemView.findViewById(R.id.backbtn);
+
         }
     }
 }

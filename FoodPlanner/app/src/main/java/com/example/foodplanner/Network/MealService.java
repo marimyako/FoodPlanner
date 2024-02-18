@@ -46,7 +46,7 @@ public interface MealService {
    @GET("filter.php")
    Observable<MealResponse> getMealsoFIngrdients(@Query("i") String ingredient);
 
-
-
+   @GET("list.php?a=list")
+   Observable<CountryResponse> getAllCountries();
 
 }

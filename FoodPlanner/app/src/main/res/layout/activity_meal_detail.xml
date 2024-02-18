@@ -10,26 +10,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/addtoplanbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Add Meal To Daily Plan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealimage" />
+
     <TextView
         android:id="@+id/mealname"
         android:layout_width="178dp"
         android:layout_height="47dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="76dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="164dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="8dp"
+        android:text="Meal Name"
+        android:textColor="@color/myprimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/mealname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:layout_width="164dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="52dp"
+        android:text="Meal Country"
+        android:textColor="@color/myprimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/mealcountry"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.804" />
 
     <TextView
         android:id="@+id/mealcountry"
         android:layout_width="107dp"
         android:layout_height="44dp"
-        android:layout_marginTop="40dp"
-        android:textStyle="bold"
+        android:layout_marginTop="68dp"
         android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintHorizontal_bias="0.825"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,11 +78,11 @@
         android:id="@+id/mealimage"
         android:layout_width="327dp"
         android:layout_height="131dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="156dp"
         android:elevation="40dp"
         android:scaleType="fitXY"
+        app:layout_constraintCircleRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,38 +90,29 @@
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="148dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/favorite"
+        app:layout_constraintBottom_toTopOf="@+id/addtoplanbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealimage" />
-
-
-    <ImageView
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/delete"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealimage" />
+        app:layout_constraintTop_toBottomOf="@+id/mealimage"
+        app:layout_constraintVertical_bias="0.031" />
 
     <TextView
         android:id="@+id/mealingrdients"
         android:layout_width="202dp"
         android:layout_height="51dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="152dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="@string/mealingrdent"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealimage"
         android:textColor="@color/myprimary"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="bold"/>
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealimage" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ingrdentsrv"
@@ -88,7 +120,7 @@
         android:layout_height="616dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.741"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mealingrdients"
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

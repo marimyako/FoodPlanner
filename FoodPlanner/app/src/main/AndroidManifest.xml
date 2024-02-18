@@ -24,25 +24,25 @@
             android:name=".category.view.CategoryScreen"
             android:exported="false" />
         <activity
-            android:name=".LoginScreen"
+            android:name=".ui.LoginScreen"
             android:exported="false" />
         <activity
-            android:name=".SignUpScreen"
+            android:name=".ui.SignUpScreen"
             android:exported="false" />
         <activity
-            android:name=".MainScreen"
+            android:name=".ui.MainScreen"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.SplashScreen"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
-            android:name=".SplashScreen"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
     </application>
 

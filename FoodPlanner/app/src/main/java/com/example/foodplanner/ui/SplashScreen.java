@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.foodplanner.R;
+import com.example.foodplanner.ui.MainActivity;
 
 public class SplashScreen extends AppCompatActivity {
 LottieAnimationView lottieAnimationView;
@@ -20,7 +22,7 @@ LottieAnimationView lottieAnimationView;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i=new Intent(getApplicationContext(),MainActivity.class);
+                Intent i=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         },5000);

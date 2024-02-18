@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/signup"
     android:background="@drawable/foodplannerbackgrounds"
-    tools:context=".SignUp">
+    tools:context=".ui.SignUpScreen">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -79,17 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Remember me"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7" />
 
-            </RelativeLayout>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
@@ -137,10 +127,11 @@
                     android:text="Login"
                     android:textColor="@color/myprimary"
                     android:textStyle="bold"/>
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="368dp"
+                android:layout_height="42dp"/>
 
         </LinearLayout>
 

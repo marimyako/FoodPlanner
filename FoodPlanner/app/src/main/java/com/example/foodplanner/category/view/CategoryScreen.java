@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.foodplanner.DB.LocalDataSource;
+import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.Model.MealPlan;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.Network.Connection;
 import com.example.foodplanner.OnClick;
@@ -83,7 +85,17 @@ public class CategoryScreen extends AppCompatActivity implements CategoryViewInt
     }
 
     @Override
+    public void onFavClickcategory(Category category) {
+
+    }
+
+    @Override
     public void onDelClick(Meal meal) {
+
+    }
+
+    @Override
+    public void onPlanClick(MealPlan mealPlan) {
 
     }
 

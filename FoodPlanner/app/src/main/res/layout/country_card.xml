@@ -6,13 +6,18 @@
     android:id="@+id/countrycard"
     app:cardCornerRadius="20dp"
     android:elevation="20dp"
-    android:backgroundTint="@color/myprimary">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:backgroundTint="@color/cards">
 
     <TextView
         android:id="@+id/countrycardtext"
         android:layout_width="77dp"
+        android:textSize="17sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="40dp"
-        android:textColor="@color/black"/>
+        />
 </androidx.cardview.widget.CardView>

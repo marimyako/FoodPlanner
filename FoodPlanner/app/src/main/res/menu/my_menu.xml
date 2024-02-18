@@ -24,5 +24,10 @@
         android:title="Profile"
         android:icon="@drawable/account"
         />
+        <item
+            android:id="@+id/plan"
+            android:title="Plan"
+            android:icon="@drawable/event"
+            />
 </group>
 </menu>

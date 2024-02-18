@@ -6,7 +6,9 @@
     android:id="@+id/categorycard"
     app:cardCornerRadius="20dp"
     android:elevation="20dp"
-    android:backgroundTint="@color/myprimary">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:backgroundTint="@color/cards">
 
 
     <ImageView
@@ -19,6 +21,9 @@
         android:id="@+id/categorycardtext"
         android:layout_width="77dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="110dp" />
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="110dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </androidx.cardview.widget.CardView>
