@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView4"
+        android:layout_width="380dp"
+        android:layout_height="137dp"
+        android:layout_marginBottom="228dp"
+        android:background="@drawable/drawerr" />
+
+</LinearLayout>

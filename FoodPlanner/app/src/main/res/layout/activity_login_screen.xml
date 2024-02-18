@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/foodplannerbackgrounds"
-    tools:context=".Signup">
+    tools:context=".ui.LoginScreen">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,6 +50,7 @@
                 android:textStyle="bold"
                 android:textSize="20sp"/>
             <EditText
+                android:id="@+id/etemaillogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
@@ -66,6 +67,7 @@
                 android:textStyle="bold"
                 android:textSize="20sp"/>
             <EditText
+                android:id="@+id/etpasslogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"/>
@@ -76,27 +78,20 @@
 
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Remember me"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="I Forget My Password"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"/>
-            </RelativeLayout>
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
+
+            <ProgressBar
+                android:id="@+id/progressbarlogin"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginbtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Login"
@@ -120,6 +115,7 @@
                 android:layout_height="10dp"/>
             <ImageView
                 android:layout_width="40dp"
+                android:id="@+id/labeled"
                 android:layout_height="40dp"
                 android:layout_margin="12dp"
                 android:background="@drawable/google"
@@ -132,11 +128,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't Have an Accout?"/>
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't Have an Accout?"/>
+                <TextView
+                    android:id="@+id/signupnow"
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
                     android:text="Sign Up"
@@ -144,7 +141,9 @@
                     android:textStyle="bold"/>
 
             </LinearLayout>
-
+            <View
+                android:layout_width="368dp"
+                android:layout_height="42dp"/>
 
 
         </LinearLayout>
