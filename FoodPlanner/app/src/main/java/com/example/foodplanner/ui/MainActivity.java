@@ -18,7 +18,7 @@ Button SignUPbtn;
 
 TextView loggin;
 
-public static Boolean isguest;
+public static Boolean isguest=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
