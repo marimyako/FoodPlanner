@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.R;
 import com.example.foodplanner.category.view.CategoryScreen;
+import com.example.foodplanner.ui.MainActivity;
 
 import java.util.List;
 
@@ -65,11 +67,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.categorycard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(context, CategoryScreen.class);
-                intent.putExtra("CAT_MEAL", category.getStrCategory());
-                context.startActivity(intent);
-
+              if(MainActivity.isguest==true) {
+                  Intent intent = new Intent(context, CategoryScreen.class);
+                  intent.putExtra("CAT_MEAL", category.getStrCategory());
+                  context.startActivity(intent);
+              }else{
+                  Toast.makeText(context, "Sorry if you to see more please signup", Toast.LENGTH_SHORT).show();
+              }
             }
         });
     }

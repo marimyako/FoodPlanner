@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 Button SignUPbtn;
 
 TextView loggin;
+
+public static Boolean isguest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,9 @@ TextView loggin;
      guesttbn.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-
+           isguest=false;
+             Intent myintent=new Intent(MainActivity.this, MainScreen.class);
+             startActivity(myintent);
          }
      });
 

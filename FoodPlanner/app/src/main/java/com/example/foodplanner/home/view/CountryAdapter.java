@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.R;
 import com.example.foodplanner.country.view.CountryScreen;
+import com.example.foodplanner.ui.MainActivity;
 
 import java.util.List;
 
@@ -48,11 +50,13 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         holder.countrycard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(context, CountryScreen.class);
-                intent.putExtra("CON_MEAL", country.getStrArea());
-                context.startActivity(intent);
-
+                if(MainActivity.isguest==true) {
+                    Intent intent = new Intent(context, CountryScreen.class);
+                    intent.putExtra("CON_MEAL", country.getStrArea());
+                    context.startActivity(intent);
+                }else {
+                    Toast.makeText(context, "Sorry if you to see more please signup", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -21,6 +22,8 @@ import com.example.foodplanner.OnClick;
 import com.example.foodplanner.R;
 import com.example.foodplanner.category.view.CategoryScreen;
 import com.example.foodplanner.meal_detail.view.MealDetail;
+import com.example.foodplanner.ui.MainActivity;
+import com.example.foodplanner.ui.MainScreen;
 
 import java.util.List;
 
@@ -74,11 +77,15 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
         holder.cardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MealDetail.class);
-                String m=list.get(position).getStrMeal();
-                intent.putExtra("MEAL_NAME",m);
-                context.startActivity(intent);
-                Log.i(TAG, "onClick: "+m);
+                if(MainActivity.isguest==true) {
+                    Intent intent = new Intent(context, MealDetail.class);
+                    String m = list.get(position).getStrMeal();
+                    intent.putExtra("MEAL_NAME", m);
+                    context.startActivity(intent);
+                    Log.i(TAG, "onClick: " + m);
+                }else {
+                    Toast.makeText(context, "Sorry if you to see more please signup", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         holder.addbtn.setOnClickListener(new View.OnClickListener() {
