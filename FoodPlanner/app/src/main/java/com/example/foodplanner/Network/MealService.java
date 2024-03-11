@@ -3,6 +3,7 @@ package com.example.foodplanner.Network;
 import com.example.foodplanner.Model.CategoryResponse;
 import com.example.foodplanner.Model.CountryResponse;
 import com.example.foodplanner.Model.IngrdientResponse;
+import com.example.foodplanner.Model.MealPlanResponse;
 import com.example.foodplanner.Model.MealResponse;
 
 import java.util.Locale;
@@ -31,6 +32,9 @@ public interface MealService {
 
    @GET("search.php")
    Observable<MealResponse> getMealsByName(@Query("s") String name);
+
+   @GET("search.php")
+   Observable<MealPlanResponse> getMealsPlanByName(@Query("s") String name);
    @GET("list.php?i=list")
    Observable<IngrdientResponse> getAllIngrdient();
 

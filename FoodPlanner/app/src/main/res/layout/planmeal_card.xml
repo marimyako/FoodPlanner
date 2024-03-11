@@ -27,18 +27,28 @@
 
         <TextView
             android:id="@+id/planitemtv"
-            android:layout_width="183dp"
-            android:layout_height="35dp"
+            android:layout_width="158dp"
+            android:layout_height="33dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="8dp"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.253"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/planitemimage" />
 
+        <ImageView
+            android:id="@+id/delbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/planitemtv"
+            app:layout_constraintTop_toBottomOf="@+id/planitemimage"
+            app:layout_constraintVertical_bias="0.47" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

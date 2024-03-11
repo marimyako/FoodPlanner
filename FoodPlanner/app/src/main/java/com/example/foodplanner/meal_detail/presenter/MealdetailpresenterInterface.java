@@ -5,6 +5,8 @@ import com.example.foodplanner.Model.MealPlan;
 
 public interface MealdetailpresenterInterface {
     void getMealdetail(String MealDetail);
+    void getMealPlandetail(String MealPlanDetail);
+
 
     void addToFav(Meal meal);
     void  removefav(Meal meal);

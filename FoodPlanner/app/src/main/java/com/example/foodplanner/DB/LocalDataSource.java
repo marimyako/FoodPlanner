@@ -56,7 +56,7 @@ public class LocalDataSource implements LocalDataSourceInterface{
 
     @Override
     public Completable deletemealplan(MealPlan mealPlan) {
-        return planDAO.deletemealplan(mealPlan);
+        return planDAO.deletemealplan(mealPlan).subscribeOn(Schedulers.io());
     }
 
     @Override

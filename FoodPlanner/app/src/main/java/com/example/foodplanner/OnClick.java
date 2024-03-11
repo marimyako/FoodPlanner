@@ -14,4 +14,5 @@ public interface OnClick {
     void onDelClick(Meal meal);
 
     void onPlanClick(MealPlan mealPlan);
+    void onPlandelClick(MealPlan mealPlan);
 }

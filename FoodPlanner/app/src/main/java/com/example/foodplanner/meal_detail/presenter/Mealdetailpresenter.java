@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.foodplanner.Model.Category;
 import com.example.foodplanner.Model.Meal;
 import com.example.foodplanner.Model.MealPlan;
+import com.example.foodplanner.Model.MealPlanResponse;
 import com.example.foodplanner.Model.MealResponse;
 import com.example.foodplanner.Model.Repository;
 import com.example.foodplanner.OnClick;
@@ -46,6 +47,33 @@ public class Mealdetailpresenter implements MealdetailpresenterInterface {
                     @Override
                     public void onNext(@NonNull MealResponse mealResponse) {
                         mealdetailViewInterface.ViewMealDetail(mealResponse.getMealsModel());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getMealPlandetail(String MealPlanDetail) {
+        Observable<MealPlanResponse> observable = repository.getMealsPlansByName(MealPlanDetail);
+        observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MealPlanResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull MealPlanResponse mealPlanResponse) {
+                        mealdetailViewInterface.ViewMealPlanDetail(mealPlanResponse.getMealPlans());
                     }
 
                     @Override

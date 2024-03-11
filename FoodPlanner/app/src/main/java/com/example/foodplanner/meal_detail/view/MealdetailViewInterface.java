@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface MealdetailViewInterface {
     void ViewMealDetail(List<Meal> meal);
+    void ViewMealPlanDetail(List<MealPlan> mealPlans);
+
     void showerror(String  error);
 
     void addMeal(Meal meal);

@@ -88,4 +88,9 @@ public class CountryScreen extends AppCompatActivity implements CountryViewInter
     public void onPlanClick(MealPlan mealPlan) {
 
     }
+
+    @Override
+    public void onPlandelClick(MealPlan mealPlan) {
+
+    }
 }

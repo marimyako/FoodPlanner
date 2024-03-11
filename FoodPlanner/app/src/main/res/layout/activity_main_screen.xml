@@ -35,6 +35,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/my_menu" />
+        app:menu="@menu/my_menu"
+        app:itemTextColor="@color/myprimary"
+        app:itemIconTint="@color/myprimary"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -102,4 +102,9 @@ public class FavouriteList extends Fragment implements FavViewInterface , OnClic
     public void onPlanClick(MealPlan mealPlan) {
 
     }
+
+    @Override
+    public void onPlandelClick(MealPlan mealPlan) {
+
+    }
 }

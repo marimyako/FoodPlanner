@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -67,6 +68,7 @@ public class CountryDetailAdapter extends RecyclerView.Adapter<CountryDetailAdap
             @Override
             public void onClick(View v) {
                 onClick.onFavClick(meal);
+                Toast.makeText(context, "Meal Added to your Favourites", Toast.LENGTH_SHORT).show();
             }
         });
     }

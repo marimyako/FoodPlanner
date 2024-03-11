@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
     TextView  guesttbn;
 
 Button SignUPbtn;
+Button Loginbtn;
 
-TextView loggin;
+
 
 public static Boolean isguest=true;
     @Override
@@ -24,7 +25,7 @@ public static Boolean isguest=true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        SignUPbtn=findViewById(R.id.signuppbtn);
-       loggin=findViewById(R.id.loginnow);
+       Loginbtn=findViewById(R.id.loginnow);
        guesttbn=findViewById(R.id.guest);
        SignUPbtn.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -33,7 +34,7 @@ public static Boolean isguest=true;
                startActivity(myintent);
            }
        });
-     loggin.setOnClickListener(new View.OnClickListener() {
+     Loginbtn.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
              Intent myintent=new Intent(MainActivity.this, LoginScreen.class);

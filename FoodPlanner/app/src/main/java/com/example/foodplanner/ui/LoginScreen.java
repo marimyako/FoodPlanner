@@ -8,11 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -43,8 +45,11 @@ public class LoginScreen extends AppCompatActivity {
     ProgressBar progressBar;
     TextView signupNow;
     ImageView googleimage;
+    CheckBox rememberme;
 
     GoogleSignInClient googleSignInClient;
+    SharedPreferences sharedPreferences;
+
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -82,6 +87,10 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     private static final String TAG = "LoginScreen";
+    private static final String PREF_NAME = "login_pref";
+    private static final String KEY_REMEMBER_ME = "remember_me";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +103,23 @@ public class LoginScreen extends AppCompatActivity {
         loginbtn = findViewById(R.id.loginbtn);
         signupNow = findViewById(R.id.signupnow);
         googleimage = findViewById(R.id.labeled);
+        rememberme = findViewById(R.id.remember);
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
                 .requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(LoginScreen.this, googleSignInOptions);
         mAuth = FirebaseAuth.getInstance();
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+        boolean rememberMe = sharedPreferences.getBoolean(KEY_REMEMBER_ME, false);
+        rememberme.setChecked(rememberMe);
+        if (rememberMe) {
+            String email = sharedPreferences.getString(KEY_EMAIL, "");
+            String password = sharedPreferences.getString(KEY_PASSWORD, "");
+            emailET.setText(email);
+            passwordET.setText(password);
+        }
+
         googleimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,13 +153,14 @@ public class LoginScreen extends AppCompatActivity {
                     Toast.makeText(LoginScreen.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                 if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                     navigateToMainScreen();
                                 } else {
                                     Log.d(TAG, "onComplete: " + task.getException());
@@ -146,6 +168,20 @@ public class LoginScreen extends AppCompatActivity {
                                 }
                             }
                         });
+
+                if (rememberme.isChecked()) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(KEY_REMEMBER_ME, true);
+                    editor.putString(KEY_EMAIL, email);
+                    editor.putString(KEY_PASSWORD, password);
+                    editor.apply();
+                } else {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(KEY_REMEMBER_ME, false);
+                    editor.remove(KEY_EMAIL);
+                    editor.remove(KEY_PASSWORD);
+                    editor.apply();
+                }
             }
         });
     }

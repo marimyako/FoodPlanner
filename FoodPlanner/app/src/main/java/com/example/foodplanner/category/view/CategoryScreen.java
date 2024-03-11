@@ -99,4 +99,9 @@ public class CategoryScreen extends AppCompatActivity implements CategoryViewInt
 
     }
 
+    @Override
+    public void onPlandelClick(MealPlan mealPlan) {
+
+    }
+
 }

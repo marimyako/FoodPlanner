@@ -40,7 +40,7 @@ public class MealDetail extends AppCompatActivity implements MealdetailViewInter
 TextView mealname;
 TextView mealcountry;
 ImageView mealimage;
-ImageView addbtn;
+Button addtofav;
 RecyclerView ingrdentrv;
 TextView mealsteps;
 YouTubePlayerView mealvideo;
@@ -59,9 +59,11 @@ Button removeplan;
 String vId;
 
 Meal model;
+
+MealPlan mealPlan;
 OnClick onClick=this;
 
-MealPlan  mealPlan;
+
 
     List<Ingrdient> ingredient= new ArrayList<Ingrdient>();
     @Override
@@ -77,12 +79,13 @@ MealPlan  mealPlan;
         addtoplan=findViewById(R.id.addtoplanbtn);
         mealcountry=findViewById(R.id.mealcountry);
         mealimage=findViewById(R.id.mealimage);
-        addbtn=findViewById(R.id.add);
+        addtofav=findViewById(R.id.add);
         ingrdentrv=findViewById(R.id.ingrdentsrv);
         mealsteps=findViewById(R.id.mealsteps);
         mealvideo=findViewById(R.id.mealvideo);
         mealdetailpresenter=new Mealdetailpresenter(this, Repository.getInstance(Connection.getInstance(this), MealDetail.this, LocalDataSource.getInstance(this)),this);
         mealdetailpresenter.getMealdetail(mealName);
+        mealdetailpresenter.getMealPlandetail(mealName);
         Log.i(TAG, "onCreate: "+mealName);
 
 
@@ -138,9 +141,10 @@ MealPlan  mealPlan;
 
     }
 
+
     @Override
     public void ViewMealDetail(List<Meal> meal) {
-      //  Meal meal1 = null;
+        //  Meal meal1 = null;
         model=meal.get(0);
         mealname.setText(model.getStrMeal());
         mealcountry.setText(model.getStrArea());
@@ -181,10 +185,11 @@ MealPlan  mealPlan;
                 ingredient.add(new Ingrdient(ingredientName));
             }
         }
-        addbtn.setOnClickListener(new View.OnClickListener() {
+        addtofav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClick.onFavClick(model);
+                Toast.makeText(MealDetail.this, "Meal Added to your Favourites", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -192,7 +197,7 @@ MealPlan  mealPlan;
 
         ingrdentrv.setAdapter(mealCardAdapter);
         ingrdentrv.setLayoutManager(gridLayoutManager);
-     //   mealCardAdapter.setMealList(ingrdient);
+        //   mealCardAdapter.setMealList(ingrdient);
         mealCardAdapter.notifyDataSetChanged();
 
         mealPlan = new MealPlan( "sunday", model.getIdMeal(),model.getStrMeal(),model.getStrMealThumb());
@@ -201,11 +206,85 @@ MealPlan  mealPlan;
             public void onClick(View v) {
                 Log.i(TAG, "onClick: meal detbebefore");
                 showDayChooserDialog(model);
-             //  onPlanClick(mealPlan);
+                Toast.makeText(MealDetail.this, "Meal Added to your Plans", Toast.LENGTH_SHORT).show();
+                // onPlanClick(mealPlan);
+            }
+        });
+    }
+
+    @Override
+    public void ViewMealPlanDetail(List<MealPlan> mealPlans) {
+
+    }
+
+  /*  @Override
+    public void ViewMealPlanDetail(List<MealPlan> mealPlans) {
+        mealPlan=mealPlans.get(0);
+        mealname.setText( mealPlan.getStrMeal());
+        mealcountry.setText( mealPlan.getStrArea());
+        if(! mealPlan.getStrYoutube().equals(""))
+        {
+            videoSplit = mealPlan.getStrYoutube().split("=");
+            vId =videoSplit[1];
+        }
+        getLifecycle().addObserver(mealvideo);
+
+        mealvideo.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+
+                youTubePlayer.loadVideo(vId, 0);
+            }
+        });
+        mealsteps.setText( mealPlan.getStrInstructions());
+        Glide.with(this).load( mealPlan.getStrMealThumb()).into(mealimage);
+        gridLayoutManager=new GridLayoutManager(this,2);
+        mealCardAdapter=new Meal_cardAdapter(this,ingredient,this);
+        String[] ingredients = {
+                mealPlan.getStrIngredient1(),
+                mealPlan.getStrIngredient2(),
+                mealPlan.getStrIngredient3(),
+                mealPlan.getStrIngredient4(),
+                mealPlan.getStrIngredient5(),
+                mealPlan.getStrIngredient6(),
+                mealPlan.getStrIngredient7(),
+                mealPlan.getStrIngredient8(),
+                mealPlan.getStrIngredient9(),
+                mealPlan.getStrIngredient10(),
+                mealPlan.getStrIngredient11(),
+                mealPlan.getStrIngredient12()
+        };
+        for (String ingredientName : ingredients) {
+            if (!ingredientName.isEmpty()) {
+                ingredient.add(new Ingrdient(ingredientName));
+            }
+        }
+        addtofav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onFavClick(model);
+                Toast.makeText(MealDetail.this, "Meal Added to your Favourites", Toast.LENGTH_SHORT).show();
             }
         });
 
-    }
+
+
+        ingrdentrv.setAdapter(mealCardAdapter);
+        ingrdentrv.setLayoutManager(gridLayoutManager);
+        //   mealCardAdapter.setMealList(ingrdient);
+        mealCardAdapter.notifyDataSetChanged();
+
+        mealPlan = new MealPlan( "sunday",  mealPlan.getIdMeal(), mealPlan.getStrMeal(),mealPlan.getStrMealThumb());
+        addtoplan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: meal detbebefore");
+                showDayChooserDialog(model);
+                Toast.makeText(MealDetail.this, "Meal Added to your Plans", Toast.LENGTH_SHORT).show();
+                // onPlanClick(mealPlan);
+            }
+        });
+    }*/
 
     @Override
     public void showerror(String error) {
@@ -223,6 +302,11 @@ delelteFav(meal);
     public void onPlanClick(MealPlan mealPlan) {
         Log.i(TAG, "onPlanClick: mealdetail before");
         addToPlanmeal(mealPlan);
+
+    }
+
+    @Override
+    public void onPlandelClick(MealPlan mealPlan) {
 
     }
 }

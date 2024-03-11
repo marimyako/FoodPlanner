@@ -6,6 +6,8 @@ import com.example.foodplanner.Model.CategoryResponse;
 import com.example.foodplanner.Model.CountryResponse;
 import com.example.foodplanner.Model.IngrdientResponse;
 import com.example.foodplanner.Model.Meal;
+import com.example.foodplanner.Model.MealPlan;
+import com.example.foodplanner.Model.MealPlanResponse;
 import com.example.foodplanner.Model.MealResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -84,6 +86,12 @@ public class Connection implements RemoteDataSource {
     @Override
     public Observable<MealResponse> getMealsByName(String name) {
         Observable<MealResponse>observable=mealService.getMealsByName(name).subscribeOn(Schedulers.io());
+        return observable;
+    }
+
+    @Override
+    public Observable<MealPlanResponse> getMealsPlansByName(String name) {
+        Observable<MealPlanResponse>observable=mealService.getMealsPlanByName(name).subscribeOn(Schedulers.io());
         return observable;
     }
 

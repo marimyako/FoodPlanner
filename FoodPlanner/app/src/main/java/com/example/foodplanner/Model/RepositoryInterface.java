@@ -19,6 +19,7 @@ public interface RepositoryInterface {
 
     Observable<MealResponse> getCountryMeals(String country);
     Observable<MealResponse> getMealsByName(String name);
+    Observable<MealPlanResponse> getMealsPlansByName(String name);
 
     Observable<IngrdientResponse> getAllIngrdient();
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -61,6 +62,7 @@ LocalDataSource localDataSource;
           @Override
           public void onClick(View v) {
               onClick.onDelClick(meal);
+              Toast.makeText(context, "Your Meal Removed from Favourites", Toast.LENGTH_SHORT).show();
           }
       });
      holder.favcard.setOnClickListener(new View.OnClickListener() {

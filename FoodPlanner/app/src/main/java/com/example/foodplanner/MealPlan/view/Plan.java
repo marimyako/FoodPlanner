@@ -160,4 +160,9 @@ LinearLayoutManager layoutManager;
     public void onPlanClick(MealPlan mealPlan) {
 
     }
+
+    @Override
+    public void onPlandelClick(MealPlan mealPlan) {
+        deleltemealplan(mealPlan);
+    }
 }

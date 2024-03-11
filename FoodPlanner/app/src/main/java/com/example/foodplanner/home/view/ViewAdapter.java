@@ -92,6 +92,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 onClick.onFavClick(meal);
+                Toast.makeText(context, "Meal Added to your Favourites", Toast.LENGTH_SHORT).show();
             }
         });
     }

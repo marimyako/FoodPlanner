@@ -13,6 +13,7 @@
         android:id="@+id/searchfragment"
         android:title="Search"
         android:icon="@drawable/search"
+
         />
     <item
         android:id="@+id/favfragment"

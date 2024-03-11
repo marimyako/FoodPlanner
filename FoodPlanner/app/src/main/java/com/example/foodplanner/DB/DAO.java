@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
-public interface DAO {
+public interface  DAO {
 
     @Query("SELECT * FROM meal_table")
     Flowable<List<Meal>> getMeals();

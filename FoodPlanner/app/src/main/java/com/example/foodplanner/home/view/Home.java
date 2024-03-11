@@ -134,4 +134,9 @@ public class Home extends Fragment implements HomeViewInterface , OnClick {
     public void onPlanClick(MealPlan mealPlan) {
 
     }
+
+    @Override
+    public void onPlandelClick(MealPlan mealPlan) {
+
+    }
 }

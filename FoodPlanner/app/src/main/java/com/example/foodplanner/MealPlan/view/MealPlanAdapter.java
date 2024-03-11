@@ -29,6 +29,7 @@ public class MealPlanAdapter extends RecyclerView.Adapter<MealPlanAdapter.ViewHo
 
     private List<Meal> list;
     OnClick onClick;
+
     private static final String TAG = "CategotyDetailAdapter";
 
     private List<MealPlan> mealPlans;
@@ -53,18 +54,24 @@ public class MealPlanAdapter extends RecyclerView.Adapter<MealPlanAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        MealPlan meal = mealPlans.get(position);
-        holder.planitemname.setText(meal.getIdMeal());
-        String url = meal.getStrMeal();
+        MealPlan mealplan = mealPlans.get(position);
+        holder.planitemname.setText(mealplan.getIdMeal());
+        String url = mealplan.getStrMeal();
         Glide.with(context).load(url).into(holder.planitemimage);
         holder.planitemcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MealDetail.class);
-                String m=list.get(position).getStrMeal();
+                String m=mealPlans.get(position).getStrMeal();
                 intent.putExtra("MEAL_NAME",m);
                 context.startActivity(intent);
                 Log.i(TAG, "onClick: "+m);
+            }
+        });
+        holder.delbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onPlandelClick(mealplan);
             }
         });
 
@@ -84,7 +91,7 @@ public class MealPlanAdapter extends RecyclerView.Adapter<MealPlanAdapter.ViewHo
         TextView planitemname;
         ImageView planitemimage;
         CardView planitemcard;
-
+        ImageView delbtn;
         ImageView addbtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +99,7 @@ public class MealPlanAdapter extends RecyclerView.Adapter<MealPlanAdapter.ViewHo
             planitemname=itemView.findViewById(R.id.planitemtv);
             planitemcard=itemView.findViewById(R.id.planitemcard);
             addbtn=itemView.findViewById(R.id.addFavorite);
+            delbtn=itemView.findViewById(R.id.delbtn);
         }
     }
 }
